@@ -179,9 +179,9 @@ randomize();
 		update_emitter();
 	}
 	
-	/// @func set_death_timer(time)
+	/// @func set_timer(time)
 	/// @param _time
-	set_death_timer = function(_time) {
+	set_timer = function(_time) {
 		alarm_set(0, _time);
 	}
 #endregion
