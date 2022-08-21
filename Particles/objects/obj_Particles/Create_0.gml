@@ -13,6 +13,11 @@ randomize();
 		_top: 1,
 		_bottom: 1,
 	}
+	
+	emitter_shape = {
+		shape: ps_shape_rectangle,
+		distribution: ps_distr_gaussian,
+	}
 
 	offset = {
 		_x: 0,
@@ -47,6 +52,11 @@ randomize();
 		_max = _max == -999 ? _min : _max;
 		
 		part_type_size(pt, _min, _max, _increase, _wobble);
+	}
+	
+	/// @func set_scale(_x, _y)
+	set_scale = function(_x, _y) {
+		part_type_scale(pt, _x, _y);
 	}
 	
 	/// @func set_color(color_a, color_b, color_c)
@@ -184,6 +194,18 @@ randomize();
 	set_timer = function(_time) {
 		alarm_set(0, _time);
 	}
+	
+	/// @func set_emitter_shape(_shape)
+	/// @param _shape
+	set_emitter_shape = function(_shape) {
+		emitter_shape.shape = _shape;
+	}
+	
+	/// @func set_emitter_distrubution(_distrubution)
+	/// @param _distrubution
+	set_emitter_distrubution = function(_distrubution) {
+		emitter_shape.distrubution = _distrubution;
+	}
 #endregion
 
 #region UPDATE FUNCTIONS
@@ -198,8 +220,8 @@ randomize();
 				x + random(emitter_size._right),
 				y + random(emitter_size._top),
 				y + random(emitter_size._bottom),
-				ps_shape_rectangle,
-				ps_distr_linear
+				emitter_shape.shape,
+				emitter_shape.distribution
 			);
 		} else {
 			part_emitter_region(ps,
@@ -208,8 +230,8 @@ randomize();
 				x + emitter_size._right,
 				y + emitter_size._top,
 				y + emitter_size._bottom,
-				ps_shape_rectangle,
-				ps_distr_linear
+				emitter_shape.shape,
+				emitter_shape.distribution
 			);
 		}
 	}	
